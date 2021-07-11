@@ -1,6 +1,6 @@
 /*
  * My shitty pewpewjson compiler
- * (c) Tasty Kiwi, 2021
+ * Copyright (c) 2021 Dominykas M. (Tasty Kiwi)
  * Licensed under MIT license
  */
 
