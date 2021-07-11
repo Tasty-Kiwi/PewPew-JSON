@@ -1,5 +1,5 @@
 /*
- * My shitty pewpewjson compiler
+ * My shitty PewPewJson compiler
  * Copyright (c) 2021 Dominykas M. (Tasty Kiwi)
  * Licensed under MIT license
  */
@@ -10,6 +10,9 @@ function compile() {
 	let temp_arr = ["-- this file was created by pewpewjson compiler\n"]
 
 	try {
+		// if no text, throw an exception
+		if (!raw_code) {throw "Did you forget to put something in?"}
+		
 		// convert json to js object
 		const parsed_code = JSON.parse(raw_code)
 
