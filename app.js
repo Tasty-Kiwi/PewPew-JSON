@@ -7,7 +7,7 @@
 function compile() {
 	// some prep code 
 	const raw_code = document.getElementById("codearea").value 
-	let temp_arr = ["-- this file was created by pewpewjson compiler", "pewpew.print(\"This level was created using PewPewJson: https://github.com/Tasty-Kiwi/PewPewJson\")\n"]
+	let temp_arr = ["-- this file was created by pewpewjson compiler\n"]
 
 	try {
 		// convert json to js object
