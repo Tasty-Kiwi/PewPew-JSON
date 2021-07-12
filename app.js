@@ -18,9 +18,16 @@ function compile() {
 
 		// convert objects into lua code
 		if (parsed_code.options.level_size) {temp_arr.push(`pewpew.set_level_size(${parsed_code.options.level_size[0]}fx, ${parsed_code.options.level_size[1]}fx)`)}
-		if (parsed_code.options.player_location) {temp_arr.push(`local ship = pewpew.new_player_ship(${parsed_code.options.player_location[0]}fx, ${parsed_code.options.player_location[1]}fx, 0)`)}
-		if (parsed_code.options.shield_amount >= 0) {temp_arr.push(`pewpew.configure_player(0, {shield = ${parsed_code.options.shield_amount}})`)}
+		if (parsed_code.options.player_position) {temp_arr.push(`local ship = pewpew.new_player_ship(${parsed_code.options.player_position[0]}fx, ${parsed_code.options.player_position[1]}fx, 0)`)}
+		if (parsed_code.options.shields >= 0) {temp_arr.push(`pewpew.configure_player(0, {shield = ${parsed_code.options.shields}})`)}
+		if (parsed_code.options.camera_distance >= -32767) {temp_arr.push(`pewpew.configure_player(0, {camera_distance = ${parsed_code.options.camera_distance}fx})`)}
+		if (parsed_code.options.camera_rotation_x_axis >= -32767) {temp_arr.push(`pewpew.configure_player(0, {camera_rotation_x_axis = ${parsed_code.options.camera_rotation_x_axis}fx})`)}
+		if (parsed_code.options.move_joystick_color) {temp_arr.push(`pewpew.configure_player(0, {move_joystick_color = 0x${parsed_code.options.move_joystick_color}})`)}
+		if (parsed_code.options.shoot_joystick_color) {temp_arr.push(`pewpew.configure_player(0, {shoot_joystick_color = 0x${parsed_code.options.shoot_joystick_color}})`)}
 
+
+		if (parsed_code.options.cannon_type && parsed_code.options.cannon_frequency) {temp_arr.push(`pewpew.configure_player_ship_weapon(ship, {cannon = pewpew.CannonType.${parsed_code.options.cannon_type.toUpperCase()}, frequency = pewpew.CannonFrequency.${parsed_code.options.cannon_frequency.toUpperCase()}})`)}
+		
 		// join the array of code 
 		document.getElementById("codeoutput").innerHTML = temp_arr.join('\n')
 	}
