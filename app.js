@@ -30,7 +30,7 @@ function compile() {
 
 		if (parsed_code.options.respawn_enemies) {temp_arr.push(`  end`, `end)`)}
 		// join the array of code 
-		document.getElementById("codeoutput").innerHTML = temp_arr.join('<br>')
+		document.getElementById("codeoutput").innerHTML = temp_arr.join('\n')
 	}
 	catch (error){
 		// send error if some shit happened
