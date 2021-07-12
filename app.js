@@ -24,10 +24,11 @@ function compile() {
 		if (parsed_code.options.camera_rotation_x_axis >= -32767) {temp_arr.push(`pewpew.configure_player(0, {camera_rotation_x_axis = ${parsed_code.options.camera_rotation_x_axis}fx})`)}
 		if (parsed_code.options.move_joystick_color) {temp_arr.push(`pewpew.configure_player(0, {move_joystick_color = 0x${parsed_code.options.move_joystick_color}})`)}
 		if (parsed_code.options.shoot_joystick_color) {temp_arr.push(`pewpew.configure_player(0, {shoot_joystick_color = 0x${parsed_code.options.shoot_joystick_color}})`)}
-
-
 		if (parsed_code.options.cannon_type && parsed_code.options.cannon_frequency) {temp_arr.push(`pewpew.configure_player_ship_weapon(ship, {cannon = pewpew.CannonType.${parsed_code.options.cannon_type.toUpperCase()}, frequency = pewpew.CannonFrequency.${parsed_code.options.cannon_frequency.toUpperCase()}})`)}
-		
+		if (parsed_code.options.respawn_enemies) {temp_arr.push(`pewpew.add_update_callback(function()`, `  if pewpew.get_entity_count(pewpew.EntityType.MOTHERSHIP) + pewpew.get_entity_count(pewpew.EntityType.ASTEROID) + pewpew.get_entity_count(pewpew.EntityType.BAF) + pewpew.get_entity_count(pewpew.EntityType.INERTIAC) + pewpew.get_entity_count(pewpew.EntityType.ROLLING_CUBE) + pewpew.get_entity_count(pewpew.EntityType.WARY) + pewpew.get_entity_count(pewpew.EntityType.UFO) + pewpew.get_entity_count(pewpew.EntityType.CROWDER) == 0 then`)}
+		//enemy code
+
+		if (parsed_code.options.respawn_enemies) {temp_arr.push(`  end`, `end)`)}
 		// join the array of code 
 		document.getElementById("codeoutput").innerHTML = temp_arr.join('\n')
 	}
