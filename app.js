@@ -17,10 +17,15 @@ function compile() {
 		const parsed_code = JSON.parse(raw_code)
 
 		// convert objects into lua code
+		if (parsed_code.options.use_helpers) {
+			temp_arr.push(`-- You chose use_helpers. That means you need helpers from sample_useful_helpers.\n`, `local player_helpers = require("/dynamic/helpers/player_helpers.lua")`, `local shield_box = require("/dynamic/helpers/boxes/shield_box.lua")`, `local cannon_box = require("/dynamic/helpers/boxes/cannon_box.lua")\n`)
+		}
 		if (parsed_code.options.level_size) {
 			temp_arr.push(`pewpew.set_level_size(${parsed_code.options.level_size[0]}fx, ${parsed_code.options.level_size[1]}fx)`)
 		}
-		if (parsed_code.options.player_position) {
+		if (parsed_code.options.player_position && parsed_code.options.use_helpers) {
+			temp_arr.push(`local ship = player_helpers.new_player_ship(${parsed_code.options.player_position[0]}fx, ${parsed_code.options.player_position[1]}fx, 0)`)
+		} else if (parsed_code.options.player_position && !parsed_code.options.use_helpers) {
 			temp_arr.push(`local ship = pewpew.new_player_ship(${parsed_code.options.player_position[0]}fx, ${parsed_code.options.player_position[1]}fx, 0)`)
 		}
 		if (parsed_code.options.shields >= 0) {
@@ -39,7 +44,7 @@ function compile() {
 			temp_arr.push(`pewpew.configure_player(0, {shoot_joystick_color = 0x${parsed_code.options.shoot_joystick_color}})`)
 		}
 		if (parsed_code.options.cannon_type && parsed_code.options.cannon_frequency) {
-			temp_arr.push(`pewpew.configure_player_ship_weapon(ship, {cannon = pewpew.CannonType.${parsed_code.options.cannon_type.toUpperCase()}, frequency = pewpew.CannonFrequency.${parsed_code.options.cannon_frequency.toUpperCase()}})`)
+			temp_arr.push(`local weapon_config = pewpew.configure_player_ship_weapon(ship, {cannon = pewpew.CannonType.${parsed_code.options.cannon_type.toUpperCase()}, frequency = pewpew.CannonFrequency.${parsed_code.options.cannon_frequency.toUpperCase()}})`)
 		}
 
 		//this oddball ensures the game ends
@@ -95,6 +100,14 @@ function compile() {
 		}
 		if (parsed_code.options.respawn_enemies) {
 			temp_arr.push(`end`,`end)`)
+		}
+
+		if (parsed_code.helper_extras.use_shield_box && parsed_code.options.use_helpers) {
+			temp_arr.push(`local time1 = 0`, `pewpew.add_update_callback(function()`, 'time1 = time1 + 1', `local modulo1 = time1 % 100`, `if modulo1 == ${parsed_code.helper_extras.shield_box_modulo} then shield_box.new(fmath.random_fixedpoint(10fx, ${parsed_code.options.level_size[0]}fx - 10fx), fmath.random_fixedpoint(10fx, ${parsed_code.options.level_size[1]}fx - 10fx), weapon_config)`, `end`, `end)`)
+		}
+
+		if (parsed_code.helper_extras.use_cannon_box && parsed_code.options.use_helpers) {
+			temp_arr.push(`local time2 = 0`, `pewpew.add_update_callback(function()`, 'time2 = time2 + 1', `local modulo2 = time2 % 100`, `if modulo2 == ${parsed_code.helper_extras.cannon_box_modulo} then cannon_box.new(fmath.random_fixedpoint(10fx, ${parsed_code.options.level_size[0]}fx - 10fx), fmath.random_fixedpoint(10fx, ${parsed_code.options.level_size[1]}fx - 10fx), fmath.random_int(0, 4))`, `end`, `end)`)
 		}
 		// join the array of code 
 		document.getElementById("codeoutput").innerHTML = temp_arr.join('\n')

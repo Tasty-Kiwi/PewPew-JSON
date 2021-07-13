@@ -9,7 +9,14 @@
 		"move_joystick_color": "ffff00ff",
 		"shoot_joystick_color": "ffffffff",
 		"camera_rotation_x_axis": 30.1,
-		"respawn_enemies": true
+		"respawn_enemies": true,
+		"use_helpers": true
+	},
+	"helper_extras":{
+		"use_shield_box": true,
+		"use_cannon_box": true,
+		"shield_box_modulo": 33,
+		"cannon_box_modulo": 66
 	},
 	"entities": [
 	{			

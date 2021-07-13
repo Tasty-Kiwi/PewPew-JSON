@@ -52,6 +52,9 @@
         },
         "respawn_enemies": {
           "type": "boolean"
+        },
+        "use_helpers": {
+          "type": "boolean"
         }
       },
       "required": [
@@ -64,7 +67,31 @@
         "move_joystick_color",
         "shoot_joystick_color",
         "camera_rotation_x_axis",
-        "respawn_enemies"
+        "respawn_enemies",
+        "use_helpers"
+      ]
+    },
+    "helper_extras": {
+      "type": "object",
+      "properties": {
+        "use_shield_box": {
+          "type": "boolean"
+        },
+        "use_cannon_box": {
+          "type": "boolean"
+        },
+        "shield_box_modulo": {
+          "type": "integer"
+        },
+        "cannon_box_modulo": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "use_shield_box",
+        "use_cannon_box",
+        "shield_box_modulo",
+        "cannon_box_modulo"
       ]
     },
     "entities": {
@@ -347,6 +374,7 @@
   },
   "required": [
     "options",
+    "helper_extras",
     "entities"
   ]
 }
