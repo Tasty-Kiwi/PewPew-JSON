@@ -23,7 +23,7 @@
 	},
 	{
 		"entity_type": "ASTEROID",
-		"attributes": [1.1, 1]
+		"attributes": [1.1, 1.1]
 	},
 	{
 		"entity_type": "CROWDER",
