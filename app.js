@@ -119,7 +119,12 @@ function compile() {
 	}
 	//mesh generator
 	try{
-		const mesh_arr = ["-- this file was created by pewpewjson compiler\n", `meshes = {{vertexes = {{0,0}, {0,${JSON.parse(raw_code).options.level_size[1]}}, {${JSON.parse(raw_code).options.level_size[0]},${JSON.parse(raw_code).options.level_size[1]}}, {${JSON.parse(raw_code).options.level_size[0]},0}}, segments = {{0,1,2,3,0}}, colors = {0x${JSON.parse(raw_code).options.mesh_color}, 0x${JSON.parse(raw_code).options.mesh_color}, 0x${JSON.parse(raw_code).options.mesh_color}, 0x${JSON.parse(raw_code).options.mesh_color}}}}`]
+		let mesh_arr = []
+		if (JSON.parse(raw_code).options.mesh_color) {
+			mesh_arr = ["-- this file was created by pewpewjson compiler\n", `meshes = {{vertexes = {{0,0}, {0,${JSON.parse(raw_code).options.level_size[1]}}, {${JSON.parse(raw_code).options.level_size[0]},${JSON.parse(raw_code).options.level_size[1]}}, {${JSON.parse(raw_code).options.level_size[0]},0}}, segments = {{0,1,2,3,0}}, colors = {0x${JSON.parse(raw_code).options.mesh_color}, 0x${JSON.parse(raw_code).options.mesh_color}, 0x${JSON.parse(raw_code).options.mesh_color}, 0x${JSON.parse(raw_code).options.mesh_color}}}}`]
+		} else {
+			throw "mesh_color missing."
+		}
 		document.getElementById("meshoutput").innerHTML = mesh_arr.join('\n')
 	}
 	catch (error){
