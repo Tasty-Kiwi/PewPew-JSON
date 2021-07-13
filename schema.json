@@ -314,6 +314,33 @@
             "attributes",
             "mothership_type"
           ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "entity_type": {
+              "type": "string"
+            },
+            "attributes": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                }
+              ]
+            },
+            "mesh_path": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "entity_type",
+            "attributes",
+            "mesh_path"
+          ]
         }
       ]
     }
