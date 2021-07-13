@@ -1,0 +1,323 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "options": {
+      "type": "object",
+      "properties": {
+        "level_size": {
+          "type": "array",
+          "items": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "integer"
+            }
+          ]
+        },
+        "shields": {
+          "type": "integer"
+        },
+        "player_position": {
+          "type": "array",
+          "items": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "integer"
+            }
+          ]
+        },
+        "cannon_type": {
+          "type": "string"
+        },
+        "cannon_frequency": {
+          "type": "string"
+        },
+        "camera_distance": {
+          "type": "integer"
+        },
+        "move_joystick_color": {
+          "type": "string"
+        },
+        "shoot_joystick_color": {
+          "type": "string"
+        },
+        "camera_rotation_x_axis": {
+          "type": "integer"
+        },
+        "respawn_enemies": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "level_size",
+        "shields",
+        "player_position",
+        "cannon_type",
+        "cannon_frequency",
+        "camera_distance",
+        "move_joystick_color",
+        "shoot_joystick_color",
+        "camera_rotation_x_axis",
+        "respawn_enemies"
+      ]
+    },
+    "entities": {
+      "type": "array",
+      "items": [
+        {
+          "type": "object",
+          "properties": {
+            "entity_type": {
+              "type": "string"
+            },
+            "attributes": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            }
+          },
+          "required": [
+            "entity_type",
+            "attributes"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "entity_type": {
+              "type": "string"
+            },
+            "attributes": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "wall_collisions": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "entity_type",
+            "attributes",
+            "wall_collisions"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "entity_type": {
+              "type": "string"
+            },
+            "attributes": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            }
+          },
+          "required": [
+            "entity_type",
+            "attributes"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "entity_type": {
+              "type": "string"
+            },
+            "attributes": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            }
+          },
+          "required": [
+            "entity_type",
+            "attributes"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "entity_type": {
+              "type": "string"
+            },
+            "attributes": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "wall_collisions": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "entity_type",
+            "attributes",
+            "wall_collisions"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "entity_type": {
+              "type": "string"
+            },
+            "attributes": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "bomb_type": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "entity_type",
+            "attributes",
+            "bomb_type"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "entity_type": {
+              "type": "string"
+            },
+            "attributes": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            }
+          },
+          "required": [
+            "entity_type",
+            "attributes"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "entity_type": {
+              "type": "string"
+            },
+            "attributes": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "lifetime": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "entity_type",
+            "attributes",
+            "lifetime"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "entity_type": {
+              "type": "string"
+            },
+            "attributes": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "mothership_type": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "entity_type",
+            "attributes",
+            "mothership_type"
+          ]
+        }
+      ]
+    }
+  },
+  "required": [
+    "options",
+    "entities"
+  ]
+}
