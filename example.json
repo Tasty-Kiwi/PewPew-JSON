@@ -1,0 +1,62 @@
+{
+	"options": {
+		"level_size": [500.1, 500.1],
+		"shields": 6,
+		"player_position": [250.1, 250.1],
+		"cannon_type": "SINGLE",
+		"cannon_frequency": "FREQ_7_5",
+		"camera_distance": 50.1,
+		"move_joystick_color": "ffff00ff",
+		"shoot_joystick_color": "ffffffff",
+		"camera_rotation_x_axis": 30.1,
+		"respawn_enemies": true
+	},
+	"entities": [
+	{			
+		"entity_type": "WARY",
+		"attributes": [1.1, 1.1]
+	},
+	{
+		"entity_type": "ROLLING_CUBE",
+		"attributes": [1.1, 1.1],
+		"wall_collisions": true
+	},
+	{
+		"entity_type": "ASTEROID",
+		"attributes": [1.1, 1]
+	},
+	{
+		"entity_type": "CROWDER",
+		"attributes": [1.1, 1.1]
+	},
+	{
+		"entity_type": "UFO",
+		"attributes": [1.1, 1.1, 1.1],
+		"wall_collisions": true
+	},
+	{
+		"entity_type": "BOMB",
+		"attributes": [1.1, 1.1],
+		"bomb_type": "ATOMIZE"
+	},
+	{
+		"entity_type": "INERTIAC",
+		"attributes": [1.1, 1.1, 1.1, 1.1]
+	},
+	{
+		"entity_type": "BAF",
+		"attributes": [1.1, 1.1, 1.1, 1.1],
+		"lifetime": -1
+	},
+	{
+		"entity_type": "MOTHERSHIP",
+		"attributes": [1.1, 1.1, 1.1],
+		"mothership_type": "SEVEN_CORNERS"
+	},
+	{
+		"entity_type": "CUSTOMIZABLE_ENTITY",
+		"attributes": [1.1, 1.1],
+		"mesh_path": "FILL_IN"
+	}
+	]
+}
