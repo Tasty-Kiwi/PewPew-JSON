@@ -43,10 +43,10 @@ function compile() {
 		}
 
 		//this oddball ensures the game ends
-		temp_arr.push(`pewpew.add_update_callback(function()`, `if pewpew.get_player_configuration(0)["has_lost"] == true then pewpew.stop_game() end`)
+		temp_arr.push(`pewpew.add_update_callback(function() if pewpew.get_player_configuration(0)["has_lost"] == true then pewpew.stop_game() end end)`)
 		
 		if (parsed_code.options.respawn_enemies) {
-			temp_arr.push(`if pewpew.get_entity_count(pewpew.EntityType.MOTHERSHIP) + pewpew.get_entity_count(pewpew.EntityType.ASTEROID) + pewpew.get_entity_count(pewpew.EntityType.BAF) + pewpew.get_entity_count(pewpew.EntityType.INERTIAC) + pewpew.get_entity_count(pewpew.EntityType.ROLLING_CUBE) + pewpew.get_entity_count(pewpew.EntityType.WARY) + pewpew.get_entity_count(pewpew.EntityType.UFO) + pewpew.get_entity_count(pewpew.EntityType.CROWDER) == 0 then`)
+			temp_arr.push(`pewpew.add_update_callback(function() if pewpew.get_entity_count(pewpew.EntityType.MOTHERSHIP) + pewpew.get_entity_count(pewpew.EntityType.ASTEROID) + pewpew.get_entity_count(pewpew.EntityType.BAF) + pewpew.get_entity_count(pewpew.EntityType.INERTIAC) + pewpew.get_entity_count(pewpew.EntityType.ROLLING_CUBE) + pewpew.get_entity_count(pewpew.EntityType.WARY) + pewpew.get_entity_count(pewpew.EntityType.UFO) + pewpew.get_entity_count(pewpew.EntityType.CROWDER) == 0 then`)
 		}
 		//enemy code
 		let entity_array = parsed_code.entities
@@ -94,9 +94,8 @@ function compile() {
 			}
 		}
 		if (parsed_code.options.respawn_enemies) {
-			temp_arr.push(`end`)
+			temp_arr.push(`end`,`end)`)
 		}
-		temp_arr.push(`end)`)
 		// join the array of code 
 		document.getElementById("codeoutput").innerHTML = temp_arr.join('\n')
 	}
