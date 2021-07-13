@@ -1,6 +1,6 @@
 {
 	"options": {
-		"level_size": [500.1, 500.1],
+		"level_size": [500, 750],
 		"shields": 6,
 		"player_position": [250.1, 250.1],
 		"cannon_type": "SINGLE",
@@ -10,6 +10,7 @@
 		"shoot_joystick_color": "ffffffff",
 		"camera_rotation_x_axis": 30.1,
 		"respawn_enemies": true,
+		"mesh_color": "ffff00ff",
 		"use_helpers": true
 	},
 	"helper_extras":{
@@ -61,9 +62,13 @@
 		"mothership_type": "SEVEN_CORNERS"
 	},
 	{
+		"entity_type": "ROLLING_SPHERE",
+		"attributes": [1.1, 1.1, 1.1, 1.1]
+	},
+	{
 		"entity_type": "CUSTOMIZABLE_ENTITY",
 		"attributes": [1.1, 1.1],
-		"mesh_path": "FILL_IN"
+		"mesh_path": "graphics.lua"
 	}
 	]
 }

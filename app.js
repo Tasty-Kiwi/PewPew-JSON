@@ -5,11 +5,10 @@
  */
 
 function compile() {
-	// some prep code 
-	const raw_code = document.getElementById("codearea").value 
-	let temp_arr = ["-- this file was created by pewpewjson compiler\n"]
-
-	try {
+	const raw_code = document.getElementById("codearea").value
+	// compile code
+	try { 
+		let temp_arr = ["-- this file was created by pewpewjson compiler\n"]
 		// if no text, throw an exception
 		if (!raw_code) {throw "Did you forget to put something in?"}
 		
@@ -49,12 +48,16 @@ function compile() {
 
 		//this oddball ensures the game ends
 		temp_arr.push(`pewpew.add_update_callback(function() if pewpew.get_player_configuration(0)["has_lost"] == true then pewpew.stop_game() end end)`)
-		
+		let entity_array = parsed_code.entities
+		for (var i = 0; i < entity_array.length; i++) {
+			if (entity_array[i].entity_type.toUpperCase() == "CUSTOMIZABLE_ENTITY") {
+				temp_arr.push(`pewpew.customizable_entity_set_mesh(pewpew.new_customizable_entity(${entity_array[i].attributes[0]}fx, ${entity_array[i].attributes[1]}fx), "/dynamic/${entity_array[i].mesh_path}", 0)`)
+			}
+		}
 		if (parsed_code.options.respawn_enemies) {
 			temp_arr.push(`pewpew.add_update_callback(function() if pewpew.get_entity_count(pewpew.EntityType.MOTHERSHIP) + pewpew.get_entity_count(pewpew.EntityType.ASTEROID) + pewpew.get_entity_count(pewpew.EntityType.BAF) + pewpew.get_entity_count(pewpew.EntityType.INERTIAC) + pewpew.get_entity_count(pewpew.EntityType.ROLLING_CUBE) + pewpew.get_entity_count(pewpew.EntityType.WARY) + pewpew.get_entity_count(pewpew.EntityType.UFO) + pewpew.get_entity_count(pewpew.EntityType.CROWDER) == 0 then`)
 		}
 		//enemy code
-		let entity_array = parsed_code.entities
 		for (var i = 0; i < entity_array.length; i++) {
 			if (entity_array[i].entity_type.toUpperCase() == "WARY") {
 				temp_arr.push(`pewpew.new_wary(${entity_array[i].attributes[0]}fx, ${entity_array[i].attributes[1]}fx)`)
@@ -94,9 +97,7 @@ function compile() {
 			if (entity_array[i].entity_type.toUpperCase() == "MOTHERSHIP") {
 				temp_arr.push(`pewpew.new_mothership(${entity_array[i].attributes[0]}fx, ${entity_array[i].attributes[1]}fx, pewpew.MothershipType.${entity_array[i].mothership_type.toUpperCase()}, ${entity_array[i].attributes[2]}fx)`)
 			}
-			if (entity_array[i].entity_type.toUpperCase() == "CUSTOMIZABLE_ENTITY") {
-				temp_arr.push(`pewpew.customizable_entity_set_mesh(pewpew.new_customizable_entity(${entity_array[i].attributes[0]}fx, ${entity_array[i].attributes[1]}fx), "${entity_array[i].mesh_path}", 0)`)
-			}
+
 		}
 		if (parsed_code.options.respawn_enemies) {
 			temp_arr.push(`end`,`end)`)
@@ -115,5 +116,13 @@ function compile() {
 	catch (error){
 		// send error if some shit happened
 		document.getElementById("codeoutput").innerHTML = `-- ERROR: ${error}`
+	}
+	//mesh generator
+	try{
+		const mesh_arr = ["-- this file was created by pewpewjson compiler\n", `meshes = {{vertexes = {{0,0}, {0,${JSON.parse(raw_code).options.level_size[1]}}, {${JSON.parse(raw_code).options.level_size[0]},${JSON.parse(raw_code).options.level_size[1]}}, {${JSON.parse(raw_code).options.level_size[0]},0}}, segments = {{0,1,2,3,0}}, colors = {0x${JSON.parse(raw_code).options.mesh_color}, 0x${JSON.parse(raw_code).options.mesh_color}, 0x${JSON.parse(raw_code).options.mesh_color}, 0x${JSON.parse(raw_code).options.mesh_color}}}}`]
+		document.getElementById("meshoutput").innerHTML = mesh_arr.join('\n')
+	}
+	catch (error){
+		document.getElementById("meshoutput").innerHTML = `-- ERROR: ${error}`
 	}
 }
