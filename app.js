@@ -4,20 +4,20 @@
  * Licensed under MIT license
  */
 
-function compile() {
-	const raw_code = document.getElementById("codearea").value
+ function compile() {
+ 	const raw_code = document.getElementById("codearea").value
 	// compile code
 	try { 
-		let temp_arr = ["-- this file was created by pewpewjson compiler\n"]
+		let temp_arr = ["-- this level file was created by pewpewjson compiler\n"]
 		// if no text, throw an exception
 		if (!raw_code) {throw "Did you forget to put something in?"}
-		
+			
 		// convert json to js object
-		const parsed_code = JSON.parse(raw_code)
+	const parsed_code = JSON.parse(raw_code)
 
 		// convert objects into lua code
 		if (parsed_code.options.use_helpers) {
-			temp_arr.push(`-- You chose use_helpers. That means you need helpers from sample_useful_helpers.\n`, `local player_helpers = require("/dynamic/helpers/player_helpers.lua")`, `local shield_box = require("/dynamic/helpers/boxes/shield_box.lua")`, `local cannon_box = require("/dynamic/helpers/boxes/cannon_box.lua")\n`)
+			temp_arr.push(`-- use_helpers is true, which means you need helpers from sample_useful_helpers.\n`, `local player_helpers = require("/dynamic/helpers/player_helpers.lua")`, `local shield_box = require("/dynamic/helpers/boxes/shield_box.lua")`, `local cannon_box = require("/dynamic/helpers/boxes/cannon_box.lua")\n`)
 		}
 		if (parsed_code.options.level_size) {
 			temp_arr.push(`pewpew.set_level_size(${parsed_code.options.level_size[0]}fx, ${parsed_code.options.level_size[1]}fx)`)
@@ -72,14 +72,14 @@ function compile() {
 				if (entity_array[i].wall_collisions) {
 					temp_arr.push(`pewpew.rolling_cube_set_enable_collisions_with_walls(pewpew.new_rolling_cube(${entity_array[i].attributes[0]}fx, ${entity_array[i].attributes[1]}fx), true)`)
 				} else {
-				temp_arr.push(`pewpew.new_rolling_cube(${entity_array[i].attributes[0]}fx, ${entity_array[i].attributes[1]}fx)`)
+					temp_arr.push(`pewpew.new_rolling_cube(${entity_array[i].attributes[0]}fx, ${entity_array[i].attributes[1]}fx)`)
 				}
 			}
 			if (entity_array[i].entity_type.toUpperCase() == "UFO") {
 				if (entity_array[i].wall_collisions) {
 					temp_arr.push(`pewpew.ufo_set_enable_collisions_with_walls(pewpew.new_ufo(${entity_array[i].attributes[0]}fx, ${entity_array[i].attributes[1]}fx, ${entity_array[i].attributes[2]}fx), true)`)
 				} else {
-				temp_arr.push(`pewpew.new_ufo(${entity_array[i].attributes[0]}fx, ${entity_array[i].attributes[1]}fx, ${entity_array[i].attributes[2]}fx)`)
+					temp_arr.push(`pewpew.new_ufo(${entity_array[i].attributes[0]}fx, ${entity_array[i].attributes[1]}fx, ${entity_array[i].attributes[2]}fx)`)
 				}
 			}
 			if (entity_array[i].entity_type.toUpperCase() == "BOMB") {
@@ -103,12 +103,12 @@ function compile() {
 			temp_arr.push(`end`,`end)`)
 		}
 
-		if (parsed_code.helper_extras.use_shield_box && parsed_code.options.use_helpers) {
-			temp_arr.push(`local time1 = 0`, `pewpew.add_update_callback(function()`, 'time1 = time1 + 1', `local modulo1 = time1 % 100`, `if modulo1 == ${parsed_code.helper_extras.shield_box_modulo} then shield_box.new(fmath.random_fixedpoint(10fx, ${parsed_code.options.level_size[0]}fx - 10fx), fmath.random_fixedpoint(10fx, ${parsed_code.options.level_size[1]}fx - 10fx), weapon_config)`, `end`, `end)`)
+		if (parsed_code.helper_extras.use_shield_box && parsed_code.options.use_helpers && parsed_code.helper_extras.modulo_max) {
+			temp_arr.push(`local time1 = 0`, `pewpew.add_update_callback(function()`, 'time1 = time1 + 1', `local modulo1 = time1 % ${parsed_code.helper_extras.modulo_max}`, `if modulo1 == ${parsed_code.helper_extras.shield_box_modulo} then shield_box.new(fmath.random_fixedpoint(10fx, ${parsed_code.options.level_size[0]}fx - 10fx), fmath.random_fixedpoint(10fx, ${parsed_code.options.level_size[1]}fx - 10fx), weapon_config)`, `end`, `end)`)
 		}
 
-		if (parsed_code.helper_extras.use_cannon_box && parsed_code.options.use_helpers) {
-			temp_arr.push(`local time2 = 0`, `pewpew.add_update_callback(function()`, 'time2 = time2 + 1', `local modulo2 = time2 % 100`, `if modulo2 == ${parsed_code.helper_extras.cannon_box_modulo} then cannon_box.new(fmath.random_fixedpoint(10fx, ${parsed_code.options.level_size[0]}fx - 10fx), fmath.random_fixedpoint(10fx, ${parsed_code.options.level_size[1]}fx - 10fx), fmath.random_int(0, 4))`, `end`, `end)`)
+		if (parsed_code.helper_extras.use_cannon_box && parsed_code.options.use_helpers && parsed_code.helper_extras.modulo_max) {
+			temp_arr.push(`local time2 = 0`, `pewpew.add_update_callback(function()`, 'time2 = time2 + 1', `local modulo2 = time2 % ${parsed_code.helper_extras.modulo_max}`, `if modulo2 == ${parsed_code.helper_extras.cannon_box_modulo} then cannon_box.new(fmath.random_fixedpoint(10fx, ${parsed_code.options.level_size[0]}fx - 10fx), fmath.random_fixedpoint(10fx, ${parsed_code.options.level_size[1]}fx - 10fx), fmath.random_int(0, 4))`, `end`, `end)`)
 		}
 		// join the array of code 
 		document.getElementById("codeoutput").innerHTML = temp_arr.join('\n')
@@ -120,10 +120,14 @@ function compile() {
 	//mesh generator
 	try{
 		let mesh_arr = []
-		if (JSON.parse(raw_code).options.mesh_color) {
-			mesh_arr = ["-- this file was created by pewpewjson compiler\n", `meshes = {{vertexes = {{0,0}, {0,${JSON.parse(raw_code).options.level_size[1]}}, {${JSON.parse(raw_code).options.level_size[0]},${JSON.parse(raw_code).options.level_size[1]}}, {${JSON.parse(raw_code).options.level_size[0]},0}}, segments = {{0,1,2,3,0}}, colors = {0x${JSON.parse(raw_code).options.mesh_color}, 0x${JSON.parse(raw_code).options.mesh_color}, 0x${JSON.parse(raw_code).options.mesh_color}, 0x${JSON.parse(raw_code).options.mesh_color}}}}`]
+		if (JSON.parse(raw_code).options.level_size) {
+			if (JSON.parse(raw_code).mesh_options.mesh_color) {
+				mesh_arr = ["-- this mesh was created by pewpewjson compiler\n", `meshes = {{vertexes = {{0,0}, {0,${JSON.parse(raw_code).options.level_size[1]}}, {${JSON.parse(raw_code).options.level_size[0]},${JSON.parse(raw_code).options.level_size[1]}}, {${JSON.parse(raw_code).options.level_size[0]},0}}, segments = {{0,1,2,3,0}}, colors = {0x${JSON.parse(raw_code).mesh_options.mesh_color}, 0x${JSON.parse(raw_code).mesh_options.mesh_color}, 0x${JSON.parse(raw_code).mesh_options.mesh_color}, 0x${JSON.parse(raw_code).mesh_options.mesh_color}}}}`]
+			} else {
+				mesh_arr = ["-- this mesh was created by pewpewjson compiler\n", `meshes = {{vertexes = {{0,0}, {0,${JSON.parse(raw_code).options.level_size[1]}}, {${JSON.parse(raw_code).options.level_size[0]},${JSON.parse(raw_code).options.level_size[1]}}, {${JSON.parse(raw_code).options.level_size[0]},0}}, segments = {{0,1,2,3,0}}, colors = {0xffffffff, 0xffffffff, 0x$ffffffff, 0xffffffff}}}`]
+			}
 		} else {
-			throw "mesh_color missing."
+			throw "level_size is missing."
 		}
 		document.getElementById("meshoutput").innerHTML = mesh_arr.join('\n')
 	}
