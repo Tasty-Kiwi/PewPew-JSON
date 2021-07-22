@@ -92,7 +92,7 @@
 				temp_arr.push(`pewpew.new_rolling_sphere(${entity_array[i].attributes[0]}fx, ${entity_array[i].attributes[1]}fx, ${entity_array[i].attributes[2]}fx, ${entity_array[i].attributes[3]}fx)`)
 			}
 			if (entity_array[i].entity_type.toUpperCase() == "BAF") {
-				temp_arr.push(`pewpew.new_baf(${entity_array[i].attributes[0]}fx, ${entity_array[i].attributes[1]}fx, ${entity_array[i].attributes[2]}fx, ${entity_array[i].attributes[3]}fx, ${entity_array[i].lifetime})`)
+				temp_arr.push(`pewpew.new_baf(${entity_array[i].attributes[0]}fx, ${entity_array[i].attributes[1]}fx, ${entity_array[i].attributes[2]}fx, ${entity_array[i].attributes[3]}fx, ${entity_array[i].attributes[4]})`)
 			}
 			if (entity_array[i].entity_type.toUpperCase() == "MOTHERSHIP") {
 				temp_arr.push(`pewpew.new_mothership(${entity_array[i].attributes[0]}fx, ${entity_array[i].attributes[1]}fx, pewpew.MothershipType.${entity_array[i].mothership_type.toUpperCase()}, ${entity_array[i].attributes[2]}fx)`)

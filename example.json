@@ -56,8 +56,7 @@
 	},
 	{
 		"entity_type": "BAF",
-		"attributes": [1, 1, 1, 1],
-		"lifetime": -1
+		"attributes": [1, 1, 1, 1, -1]
 	},
 	{
 		"entity_type": "MOTHERSHIP",
