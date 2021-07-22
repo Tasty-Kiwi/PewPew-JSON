@@ -122,9 +122,9 @@
 		let mesh_arr = []
 		if (JSON.parse(raw_code).options.level_size) {
 			if (JSON.parse(raw_code).mesh_options.mesh_color) {
-				mesh_arr = ["-- this mesh was created by pewpewjson compiler\n", `meshes = {{vertexes = {{0,0}, {0,${JSON.parse(raw_code).options.level_size[1]}}, {${JSON.parse(raw_code).options.level_size[0]},${JSON.parse(raw_code).options.level_size[1]}}, {${JSON.parse(raw_code).options.level_size[0]},0}}, segments = {{0,1,2,3,0}}, colors = {0x${JSON.parse(raw_code).mesh_options.mesh_color}, 0x${JSON.parse(raw_code).mesh_options.mesh_color}, 0x${JSON.parse(raw_code).mesh_options.mesh_color}, 0x${JSON.parse(raw_code).mesh_options.mesh_color}}}}`]
+				mesh_arr = ["-- this mesh file was created by pewpewjson compiler\n", `meshes = {{vertexes = {{0,0}, {0,${JSON.parse(raw_code).options.level_size[1]}}, {${JSON.parse(raw_code).options.level_size[0]},${JSON.parse(raw_code).options.level_size[1]}}, {${JSON.parse(raw_code).options.level_size[0]},0}}, segments = {{0,1,2,3,0}}, colors = {0x${JSON.parse(raw_code).mesh_options.mesh_color}, 0x${JSON.parse(raw_code).mesh_options.mesh_color}, 0x${JSON.parse(raw_code).mesh_options.mesh_color}, 0x${JSON.parse(raw_code).mesh_options.mesh_color}}}}`]
 			} else {
-				mesh_arr = ["-- this mesh was created by pewpewjson compiler\n", `meshes = {{vertexes = {{0,0}, {0,${JSON.parse(raw_code).options.level_size[1]}}, {${JSON.parse(raw_code).options.level_size[0]},${JSON.parse(raw_code).options.level_size[1]}}, {${JSON.parse(raw_code).options.level_size[0]},0}}, segments = {{0,1,2,3,0}}, colors = {0xffffffff, 0xffffffff, 0x$ffffffff, 0xffffffff}}}`]
+				mesh_arr = ["-- this mesh was file created by pewpewjson compiler\n", `meshes = {{vertexes = {{0,0}, {0,${JSON.parse(raw_code).options.level_size[1]}}, {${JSON.parse(raw_code).options.level_size[0]},${JSON.parse(raw_code).options.level_size[1]}}, {${JSON.parse(raw_code).options.level_size[0]},0}}, segments = {{0,1,2,3,0}}, colors = {0xffffffff, 0xffffffff, 0x$ffffffff, 0xffffffff}}}`]
 			}
 		} else {
 			throw "level_size is missing."
