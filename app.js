@@ -3,7 +3,7 @@
  * Copyright (c) 2021 Dominykas M. (Tasty Kiwi)
  * Licensed under MIT license
  */
-
+ "use strict";
  function compile() {
  	const raw_code = document.getElementById("codearea").value
 	// compile code
