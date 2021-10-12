@@ -22,55 +22,54 @@
 		"cannon_box_modulo": 66,
 		"modulo_max": 1000
 	},
-	"entities": [
-	{			
-		"entity_type": "WARY",
-		"attributes": [1, 1]
-	},
-	{
-		"entity_type": "ROLLING_CUBE",
-		"attributes": [1, 1],
-		"wall_collisions": true
-	},
-	{
-		"entity_type": "ASTEROID",
-		"attributes": [1, 1]
-	},
-	{
-		"entity_type": "CROWDER",
-		"attributes": [1, 1]
-	},
-	{
-		"entity_type": "UFO",
-		"attributes": [1, 1, 1],
-		"wall_collisions": true
-	},
-	{
-		"entity_type": "BOMB",
-		"attributes": [1, 1],
-		"bomb_type": "ATOMIZE"
-	},
-	{
-		"entity_type": "INERTIAC",
-		"attributes": [1, 1, 1, 1]
-	},
-	{
-		"entity_type": "BAF",
-		"attributes": [1, 1, 1, 1, -1]
-	},
-	{
-		"entity_type": "MOTHERSHIP",
-		"attributes": [1, 1, 1],
-		"mothership_type": "SEVEN_CORNERS"
-	},
-	{
-		"entity_type": "ROLLING_SPHERE",
-		"attributes": [1, 1, 1, 1]
-	},
-	{
-		"entity_type": "CUSTOMIZABLE_ENTITY",
-		"attributes": [1, 1],
-		"mesh_path": "graphics.lua"
-	}
+	"entities": [{
+			"entity_type": "WARY",
+			"attributes": [1, 1]
+		},
+		{
+			"entity_type": "ROLLING_CUBE",
+			"attributes": [1, 1],
+			"wall_collisions": true
+		},
+		{
+			"entity_type": "ASTEROID",
+			"attributes": [1, 1]
+		},
+		{
+			"entity_type": "CROWDER",
+			"attributes": [1, 1]
+		},
+		{
+			"entity_type": "UFO",
+			"attributes": [1, 1, 1],
+			"wall_collisions": true
+		},
+		{
+			"entity_type": "BOMB",
+			"attributes": [1, 1],
+			"bomb_type": "ATOMIZE"
+		},
+		{
+			"entity_type": "INERTIAC",
+			"attributes": [1, 1, 1, 1]
+		},
+		{
+			"entity_type": "BAF",
+			"attributes": [1, 1, 1, 1, -1]
+		},
+		{
+			"entity_type": "MOTHERSHIP",
+			"attributes": [1, 1, 1],
+			"mothership_type": "SEVEN_CORNERS"
+		},
+		{
+			"entity_type": "ROLLING_SPHERE",
+			"attributes": [1, 1, 1, 1]
+		},
+		{
+			"entity_type": "CUSTOMIZABLE_ENTITY",
+			"attributes": [1, 1],
+			"mesh_path": "graphics.lua"
+		}
 	]
 }
