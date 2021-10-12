@@ -4,7 +4,7 @@
 
 A schema and a compiler for it to create PPL levels with JSON.
 
-Using it: [https://tasty-kiwi.github.io/PewPewJson/](https://tasty-kiwi.github.io/PewPewJson/)
+Using it: [https://tasty-kiwi.github.io/PewPew-JSON/](https://tasty-kiwi.github.io/PewPewJSON/)
 
 `schema.json` will be updated after the first stable release.
 
