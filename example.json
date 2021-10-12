@@ -58,6 +58,14 @@
 			"attributes": [1, 1, 1, 1, -1]
 		},
 		{
+			"entity_type": "BAF_BLUE",
+			"attributes": [1, 1, 1, 1, -1]
+		},
+		{
+			"entity_type": "BAF_RED",
+			"attributes": [1, 1, 1, 1, -1]
+		},
+		{
 			"entity_type": "MOTHERSHIP",
 			"attributes": [1, 1, 1],
 			"mothership_type": "SEVEN_CORNERS"
