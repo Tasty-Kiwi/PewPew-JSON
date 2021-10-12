@@ -1,9 +1,8 @@
 # PewPew JSON
+# **:warning:WARNING! This repository has been archived for foreseeable future. I am working on a way better solution than this. I will update this message once it releases.**
 ![example workflow](https://github.com/Tasty-Kiwi/PewPew-JSON/actions/workflows/codeql-analysis.yml/badge.svg)
 
 A schema and a compiler for it to create PPL levels with JSON.
-
-**:warning:WARNING! The syntax is not complete yet, which means it can and probably will have breaking changes.**
 
 Using it: [https://tasty-kiwi.github.io/PewPewJson/](https://tasty-kiwi.github.io/PewPewJson/)
 
